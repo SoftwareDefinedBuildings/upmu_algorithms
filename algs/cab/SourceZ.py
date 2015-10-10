@@ -1,7 +1,7 @@
 import qdf
 import numpy as np
 
-class sourceZ (qdf.QDF2Distillate):
+class sourceZ(qdf.QDF2Distillate):
 
 	def initialize(self, section, name):
 		self.set_section(section)
@@ -14,31 +14,30 @@ class sourceZ (qdf.QDF2Distillate):
 		self.register_output("tanAng", "deg")
 		self.register_output("MagZ", "Ohm")
 
-    def compute(self, changed_ranges, input_streams, params, report):
-	    voltage_phase = input_streams["voltage_phase"]
-	    current_phase = input_streams["current_phase"]
-	    voltage_mag = input_streams["voltage_mag"]
-	    current_mag = input_streams["current_mag"]
+	def compute(self, changed_ranges, input_streams, params, report):
+		voltage_phase = input_streams["voltage_phase"]
+		current_phase = input_streams["current_phase"]
+		voltage_mag = input_streams["voltage_mag"]
+		current_mag = input_streams["current_mag"]
+		tanAng = report.output("tanAng")
+		MagZ = report.output("MagZ")
+		i_vol_phase = 0
+		i_cur_phase = 0
+		i_vol_mag = 0
+		i_cur_mag = 0
 
-	    tanAng = report.output("tanAng")
-	    MagZ = report.output("MagZ")
-	    i_vol_phase = 0
-	    i_cur_phase = 0
-	    i_vol_mag = 0
-	    i_cur_mag = 0
-	    
-	    while i_vol_phase < len(voltage_phase) and i_cur_phase < len(current_phase) and i_vol_mag < len(voltage_mag) and i_cur_mag < len(current_mag):
-	      if not (voltage_phase[i_vol_phase][0] == current_phase[i_cur_phase][0] == voltage_mag[i_vol_mag][0] == current_mag[i_cur_mag][0]):
-	        # if times do not align, iteratively increment trailing stream until equal
-	        max_time = max(voltage_phase[i_vol_phase][0], current_phase[i_cur_phase][0],voltage_mag[i_vol_mag][0],current_mag[i_cur_mag][0])
-	        if voltage_phase[i_vol][0] < max_time:
-	          i_vol_phase += 1
-	        if current_phase[i_cur][0] < max_time:
-	          i_cur_phase += 1
-	        if voltage_mag[i_vol_mag][0] < max_time:
-	          i_vol_mag += 1
-	        if current_mag[i_cur_mag][0] < max_time:
-	          i_cur_mag += 1
+		while i_vol_phase < len(voltage_phase) and i_cur_phase < len(current_phase) and i_vol_mag < len(voltage_mag) and i_cur_mag < len(current_mag):
+			if not (voltage_phase[i_vol_phase][0] == current_phase[i_cur_phase][0] == voltage_mag[i_vol_mag][0] == current_mag[i_cur_mag][0]):
+			# if times do not align, iteratively increment trailing stream until equal
+			max_time = max(voltage_phase[i_vol_phase][0], current_phase[i_cur_phase][0],voltage_mag[i_vol_mag][0],current_mag[i_cur_mag][0])
+			if voltage_phase[i_vol][0] < max_time:
+				i_vol_phase += 1
+			if current_phase[i_cur][0] < max_time:
+				i_cur_phase += 1
+			if voltage_mag[i_vol_mag][0] < max_time:
+				i_vol_mag += 1
+			if current_mag[i_cur_mag][0] < max_time:
+				i_cur_mag += 1
 	        continue
 
 		    #now peform calculation and output stream
