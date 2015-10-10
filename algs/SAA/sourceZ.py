@@ -43,8 +43,8 @@ class sourceZ (qdf.QDF2Distillate):
 
 		    #now peform calculation and output stream
 		    time = voltage_phase[i_vol_phase][0]
-		    tanAng = np.degrees(np.tan(voltage_mag[i_vol_phase] - current_phase[i_cur_phase]))
-		    MagZ = np.divide(voltage_mag[i_vol_mag],current_mag[i_cur_mag])
+		    tanAng = np.degrees(np.tan(voltage_mag[i_vol_phase][1] - current_phase[i_cur_phase][1]))
+		    MagZ = np.divide(voltage_mag[i_vol_mag][1],current_mag[i_cur_mag][1])
 		    tanAng.addreading(time,tanAng)
 		    MagZ.addreading(time,tanAng)
 
