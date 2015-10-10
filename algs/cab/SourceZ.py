@@ -28,17 +28,17 @@ class sourceZ(qdf.QDF2Distillate):
 
 		while i_vol_phase < len(voltage_phase) and i_cur_phase < len(current_phase) and i_vol_mag < len(voltage_mag) and i_cur_mag < len(current_mag):
 			if not (voltage_phase[i_vol_phase][0] == current_phase[i_cur_phase][0] == voltage_mag[i_vol_mag][0] == current_mag[i_cur_mag][0]):
-			# if times do not align, iteratively increment trailing stream until equal
-			max_time = max(voltage_phase[i_vol_phase][0], current_phase[i_cur_phase][0],voltage_mag[i_vol_mag][0],current_mag[i_cur_mag][0])
-			if voltage_phase[i_vol][0] < max_time:
-				i_vol_phase += 1
-			if current_phase[i_cur][0] < max_time:
-				i_cur_phase += 1
-			if voltage_mag[i_vol_mag][0] < max_time:
-				i_vol_mag += 1
-			if current_mag[i_cur_mag][0] < max_time:
-				i_cur_mag += 1
-	        continue
+				# if times do not align, iteratively increment trailing stream until equal
+				max_time = max(voltage_phase[i_vol_phase][0], current_phase[i_cur_phase][0],voltage_mag[i_vol_mag][0],current_mag[i_cur_mag][0])
+				if voltage_phase[i_vol][0] < max_time:
+					i_vol_phase += 1
+				if current_phase[i_cur][0] < max_time:
+					i_cur_phase += 1
+				if voltage_mag[i_vol_mag][0] < max_time:
+					i_vol_mag += 1
+				if current_mag[i_cur_mag][0] < max_time:
+					i_cur_mag += 1
+				continue
 
 		    #now peform calculation and output stream
 		    time = voltage_phase[i_vol_phase][0]
@@ -47,18 +47,18 @@ class sourceZ(qdf.QDF2Distillate):
 		    tanAng.addreading(time,tanAng)
 		    MagZ.addreading(time,tanAng)
 
-	    	#increment counter now that calculation is performed for this data point
-	    	i_vol_phase += 1
-	    	i_cur_phase += 1
-	    	i_vol_mag += 1
-	    	i_cur_mag += 1
-	    
+		    #increment counter now that calculation is performed for this data point
+		    i_vol_phase += 1
+		    i_cur_phase += 1
+		    i_vol_mag += 1
+		    i_cur_mag += 1
 
-	    MagZ.addbounds(*changed_ranges["voltage_phase"])
-	    MagZ.addbounds(*changed_ranges["current_phase"])
-	    MagZ.addbounds(*changed_ranges["voltage_mag"])
-	    MagZ.addbounds(*changed_ranges["current_mag"])
-	    tanAng.addbounds(*changed_ranges["voltage_phase"])
-	    tanAng.addbounds(*changed_ranges["current_phase"])
-	    tanAng.addbounds(*changed_ranges["voltage_mag"])
-	    tanAng.addbounds(*changed_ranges["current_mag"])
+
+		MagZ.addbounds(*changed_ranges["voltage_phase"])
+		MagZ.addbounds(*changed_ranges["current_phase"])
+		MagZ.addbounds(*changed_ranges["voltage_mag"])
+		MagZ.addbounds(*changed_ranges["current_mag"])
+		tanAng.addbounds(*changed_ranges["voltage_phase"])
+		tanAng.addbounds(*changed_ranges["current_phase"])
+		tanAng.addbounds(*changed_ranges["voltage_mag"])
+		tanAng.addbounds(*changed_ranges["current_mag"])
