@@ -15,7 +15,7 @@ class Currentdiff(qdf.QDF2Distillate):
 		currentdifference = report.output("currentdifference")
 		i_cur_mag = 0
 
-		while i_cur_mag < len(current_mag):
+		while i_cur_mag < len(current_mag)-1:
 			time = current_mag[i_cur_mag][0]
 			current_diff = current_mag[i_cur_mag + 1][1] - current_mag[i_cur_mag][1]
 			currentdifference.addreading(time,current_diff)
