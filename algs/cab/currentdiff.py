@@ -6,7 +6,7 @@ class Currentdiff(qdf.QDF2Distillate):
 	def initialize(self, section, name):
 		self.set_section(section)
 		self.set_name(name)
-		self.set_version(1)
+		self.set_version(2)
 		self.register_input("current_mag")
 		self.register_output("currentdifference", "A")
 
