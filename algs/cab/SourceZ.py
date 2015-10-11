@@ -6,7 +6,7 @@ class sourceZ(qdf.QDF2Distillate):
 	def initialize(self, section, name):
 		self.set_section(section)
 		self.set_name(name)
-		self.set_version(2)
+		self.set_version(3)
 		self.register_input("voltage_phase")
 		self.register_input("current_phase")
 		self.register_input("voltage_mag")
