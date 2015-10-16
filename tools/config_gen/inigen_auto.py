@@ -195,10 +195,9 @@ class IniGenAutomation():
     inigen.emit_global(algorithm_path, enabled)
 
     for label in self.uuid_map:
-      if label == 'LSTATE':
-        distillate_label = label
-      else:
-        distillate_label = get_distillate_label([label])
+      if label == 'LSTATE' or 'MAG' in label:
+        continue
+      distillate_label = get_distillate_label([label])
 
       # header
       inigen.emit_run_header(label, CHUNKING, MINTIME, MAXTIME)
