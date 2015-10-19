@@ -6,13 +6,13 @@ class sourceZ(qdf.QDF2Distillate):
 	def initialize(self, section, name):
 		self.set_section(section)
 		self.set_name(name)
-		self.set_version(4)
+		self.set_version(5)
 		self.register_input("voltage_phase")
 		self.register_input("current_phase")
 		self.register_input("voltage_mag")
 		self.register_input("current_mag")
-		self.register_output("tanAng", "deg")
-		self.register_output("MagZ", "Ohm")
+		self.register_output("tanAng", "")
+		self.register_output("MagZ", "")
 
 	def compute(self, changed_ranges, input_streams, params, report):
 		voltage_phase = input_streams["voltage_phase"]
@@ -41,7 +41,7 @@ class sourceZ(qdf.QDF2Distillate):
 				continue
 			#now peform calculation and output stream
 			time = voltage_phase[i_vol_phase][0]
-			tanAng_reading = np.tan(voltage_phase[i_vol_phase][1] - current_phase[i_cur_phase][1])
+			tanAng_reading = np.tan(np.radians(voltage_phase[i_vol_phase][1] - current_phase[i_cur_phase][1]))
 			MagZ_reading = np.divide(voltage_mag[i_vol_mag][1],current_mag[i_cur_mag][1])
 			tanAng.addreading(time,tanAng_reading)
 			MagZ.addreading(time,MagZ_reading)
