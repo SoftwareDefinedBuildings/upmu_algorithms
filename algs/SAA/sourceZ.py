@@ -1,7 +1,7 @@
 import qdf
 import numpy as np
 
-class sourceZ (qdf.QDF2Distillate):
+class sourceZ(qdf.QDF2Distillate):
 
 	def initialize(self, section, name):
 		self.set_section(section)
