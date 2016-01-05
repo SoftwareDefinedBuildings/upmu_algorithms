@@ -11,7 +11,7 @@ class RPFP (qdf.QDF2Distillate):
     self.register_input("voltage_mag")
     self.register_input("current_mag")
     self.register_output("REACTIVE-POWER", "VAR")
-    self.register_output("FUNDAMENTAL-POWER", "W")
+    self.register_output("REAL-POWER", "W")
 
   def compute(self, changed_ranges, input_streams, params, report):
     voltage_phase = input_streams["voltage_phase"]
@@ -20,7 +20,7 @@ class RPFP (qdf.QDF2Distillate):
     current_mag = input_streams["current_mag"]
 
     REACTIVE_POWER = report.output("REACTIVE-POWER")
-    FUNDAMENTAL_POWER = report.output("FUNDAMENTAL-POWER")
+    FUNDAMENTAL_POWER = report.output("REAL-POWER")
     i_vol_phase = 0
     i_cur_phase = 0
     i_vol_mag = 0
