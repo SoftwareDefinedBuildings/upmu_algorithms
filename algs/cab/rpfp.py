@@ -30,9 +30,9 @@ class RPFP (qdf.QDF2Distillate):
       if not (voltage_phase[i_vol_phase][0] == current_phase[i_cur_phase][0] == voltage_mag[i_vol_mag][0] == current_mag[i_cur_mag][0]):
         # if times do not align, iteratively increment trailing stream until equal
         max_time = max(voltage_phase[i_vol_phase][0], current_phase[i_cur_phase][0],voltage_mag[i_vol_mag][0],current_mag[i_cur_mag][0])
-        if voltage_phase[i_vol][0] < max_time:
+        if voltage_phase[i_vol_phase][0] < max_time:
           i_vol_phase += 1
-        if current_phase[i_cur][0] < max_time:
+        if current_phase[i_cur_phase][0] < max_time:
           i_cur_phase += 1
         if voltage_mag[i_vol_mag][0] < max_time:
           i_vol_mag += 1
