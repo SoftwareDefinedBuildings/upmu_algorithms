@@ -20,11 +20,13 @@ class Clean (qdf.QDF2Distillate):
 
     self.register_output('CLEAN', units)
     self.register_input('raw')
+    self.register_input('LSTATE')
 
   def compute(self, changed_ranges, input_streams, params, report):
     raw = input_streams['raw']
+    lstates = input_streams['LSTATE']
     clean = report.output('CLEAN')
-
+    
     for point in raw:
       # where cleaning happens
       clean.addreading(point[0], point[1])
