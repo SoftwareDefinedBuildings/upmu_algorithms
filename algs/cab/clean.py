@@ -4,7 +4,7 @@ class Clean (qdf.QDF2Distillate):
   def initialize(self, section="Clean", name="default", stream_type="ANG"):
     self.set_section(section)
     self.set_name(name)
-    self.set_version(1)
+    self.set_version(2)
 
     if 'ANG' in stream_type:
       units = 'deg'
